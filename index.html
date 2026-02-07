@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff4d6d, #ffb3c6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  .card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 25px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    animation: pop 1s ease;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  h1 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  h2 {
+    color: #ff85a1;
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  button:hover {
+    transform: scale(1.08);
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  .hell-yes {
+    background: #ff85a1;
+    color: white;
+  }
+
+  .message {
+    margin-top: 25px;
+    font-size: 18px;
+    color: #ff4d6d;
+    font-weight: bold;
+    min-height: 40px;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.85;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Will you be my Valentine? 💘</h1>
+  <h2>Aqsa ❤️ (Mustakim’s wife)</h2>
+
+  <button class="yes" onclick="yesClick()">Yes hell yess</button>
+  <button class="hell-yes" onclick="hellYesClick()">Hell yess</button>
+
+  <div class="message" id="message"></div>
+</div>
+
+<!-- Click sound -->
+<audio id="clickSound">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-happy-pop-2068.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function playSound() {
+    document.getElementById("clickSound").play();
+  }
+
+  function yesClick() {
+    playSound();
+    document.getElementById("message").innerHTML =
+      "Yayyyy!! Love you so much Aqsa 😘❤️";
+    burstHearts();
+  }
+
+  function hellYesClick() {
+    playSound();
+    document.getElementById("message").innerHTML =
+      "Perfect option my babe Aqsa 💋";
+    burstHearts();
+  }
+
+  function burstHearts() {
+    for (let i = 0; i < 22; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heart.style.fontSize = (Math.random() * 22 + 14) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+  }
+</script>
+
+</body>
+</html>
